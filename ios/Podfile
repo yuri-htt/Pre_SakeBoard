@@ -1,0 +1,36 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'Pre_SakeBoard' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+  rn_path = '../node_modules/react-native'
+
+  # Pods for Pre_SakeBoard
+  pod 'React', :path => rn_path, :subspecs => [
+    'RCTLinkingIOS',
+  ]
+  # Explicitly include Yoga if you are using RN >= 0.42.0
+  pod 'yoga', :path => "#{rn_path}/ReactCommon/yoga"
+  pod 'Firebase/Core'
+
+  target 'Pre_SakeBoardTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
+
+target 'Pre_SakeBoard-tvOS' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+  # Pods for Pre_SakeBoard-tvOS
+
+  target 'Pre_SakeBoard-tvOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
