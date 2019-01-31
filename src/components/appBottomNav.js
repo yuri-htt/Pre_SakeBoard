@@ -17,17 +17,20 @@ class AppBottomNav extends Component {
   }
 }
 
+// TODO: Warningが出るのでReduxを見てreact-navigationのメソッドに直す
 const BottomNav = createMaterialBottomTabNavigator({
   Home: {
     screen: HomeScreen,
     navigationOptions: {
       tabBarLabel: 'Home',
+      tabBarIcon: () => (<View style={{ width: 24, height: 24, backgroundColor: '#FFF'}} />) 
     }
   },
   Post: {
     screen: PostScreen,
     navigationOptions: {
       tabBarLabel: 'Post',
+      tabBarIcon: () => (<View style={{ width: 24, height: 24, backgroundColor: '#FFF'}} />) 
     }
   },
 }, {
