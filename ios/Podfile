@@ -14,6 +14,10 @@ target 'Pre_SakeBoard' do
   # Explicitly include Yoga if you are using RN >= 0.42.0
   pod 'yoga', :path => "#{rn_path}/ReactCommon/yoga"
   pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
+
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
   target 'Pre_SakeBoardTests' do
     inherit! :search_paths

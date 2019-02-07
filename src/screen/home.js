@@ -5,8 +5,17 @@ import {
     View,
     StyleSheet,
 } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { getUser } from '../redux/modules/user';
 
 class HomeScreen extends Component {
+    componentDidMount() {
+        console.log(this.props)
+        this.props.getUser();
+    }
+    
     render() {
         return (
             <View style={styles.center}>
@@ -24,4 +33,17 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen
+// export default HomeScreen
+
+const mapStatetoProps = (state) => {
+    const { records } = state
+    return { records }
+}
+
+const mapDispatchToProps = dispatch => (
+    bindActionCreators({
+        getUser,
+    }, dispatch)
+);
+
+export default connect(mapStatetoProps, mapDispatchToProps)(HomeScreen)
