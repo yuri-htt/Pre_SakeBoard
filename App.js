@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {
   StatusBar,
-  View
+  View,
 } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStackNavigator } from 'react-navigation';
@@ -9,20 +9,18 @@ import { createStackNavigator } from 'react-navigation';
 import store from './src/redux/store';
 import AppBottomNav from './src/components/appBottomNav';
 
-export default class App extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <View style={{flex:1}}>
-          <StatusBar
-            backgroundColor="#083A3E"
-            barStyle="light-content"
-          />
-          <AppStackNav/>
-        </View>
-      </Provider>
-    );
-  }
+export default function App() {
+  return (
+    <Provider store={store}>
+      <View style={{ flex: 1 }}>
+        <StatusBar
+          backgroundColor="#083A3E"
+          barStyle="light-content"
+        />
+        <AppStackNav />
+      </View>
+    </Provider>
+  );
 }
 
 const AppStackNav = createStackNavigator({
@@ -30,7 +28,7 @@ const AppStackNav = createStackNavigator({
     screen: AppBottomNav,
     navigationOptions: {
       headerTintColor: '#97c8eb',
-      header: null
-    }
+      header: null,
+    },
   },
-})
+});
