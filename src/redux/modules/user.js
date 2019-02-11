@@ -14,7 +14,7 @@ export default (state = initialState, action) => {
     case 'SET_USER_FAIL':
       return {
         error: payload.error,
-      }
+      };
     default:
       return state;
   }
@@ -28,35 +28,35 @@ export default (state = initialState, action) => {
 //     type: 'TEST',
 // })
 
-export const setUser = (uid) => ({
+export const setUser = uid => ({
   type: 'SET_USER',
   payload: {
-    uid: uid,
+    uid,
   },
-})
+});
 
-const setUserFail = () => ({
+const setUserFail = error => ({
   type: 'SET_USER_FAIL',
   payload: {
-    error: error,
+    error,
   },
-})
+});
 
 export const getUser = () => {
   let action;
-  firebase.auth().onAuthStateChanged(user => {
+  firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       action = setUser(user.uid);
     } else {
       firebase.auth().signInAnonymously()
-      .then(() => {
-        action = setUser(firebase.auth().currentUser.uid);
-      })
-      .catch(error => {
-        action = setUserFail(error);
-      });
+        .then(() => {
+          action = setUser(firebase.auth().currentUser.uid);
+        })
+        .catch((error) => {
+          action = setUserFail(error);
+        });
     }
   });
 
   return action;
-}
+};
