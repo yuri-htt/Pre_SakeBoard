@@ -8,6 +8,7 @@ import { createStackNavigator } from 'react-navigation';
 
 import store from './src/redux/store';
 import AppBottomNav from './src/components/appBottomNav';
+import AddScreen from './src/screen/add';
 
 export default function App() {
   return (
@@ -29,6 +30,13 @@ const AppStackNav = createStackNavigator({
     navigationOptions: {
       headerTintColor: '#97c8eb',
       header: null,
+    },
+  },
+  Add: {
+    screen: AddScreen,
+    navigationOptions: {
+      headerTintColor: '#97c8eb',
+      headerTransparent: true,
     },
   },
 });

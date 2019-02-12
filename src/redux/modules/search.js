@@ -1,6 +1,8 @@
 import firebase from 'react-native-firebase';
 
-const initialState = null;
+const initialState = {
+  showModal: false,
+};
 
 export default (state = initialState, action) => {
   const { type, payload } = action;
@@ -13,6 +15,10 @@ export default (state = initialState, action) => {
     case 'SEARCH_SUCCESS':
       return {
         start: false,
+      };
+    case 'SET_MODAL':
+      return {
+        showModal: payload,
       };
     default:
       return state;
@@ -34,5 +40,12 @@ function startSearching() {
 function endSearching() {
   return {
     type: 'SEARCH_SUCCESS',
+  };
+}
+
+export function setModal(visible) {
+  return {
+    type: 'SET_MODAL',
+    payload: visible,
   };
 }

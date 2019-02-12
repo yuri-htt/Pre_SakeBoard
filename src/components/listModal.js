@@ -17,12 +17,16 @@ import Ionicon from 'react-native-vector-icons/Ionicons';
 
 import CategoryIcon from './categoryIcon';
 
+import { setModal } from '../redux/modules/search';
+import { selectSake } from '../redux/modules/sake';
+
 const { width, height } = Dimensions.get('window');
 
 class ListModal extends Component {
   render() {
     const {
       results,
+      setModal,
       searching,
       matchLists,
     } = this.props;
@@ -30,7 +34,7 @@ class ListModal extends Component {
     return (
       <Modal
         animationType="slide"
-        onRequestClose={() => this.setState({ showModal: false })}
+        onRequestClose={() => setModal(false)}
         transparent
         visible
       >
@@ -46,20 +50,19 @@ class ListModal extends Component {
 
             {/* 検索中 */}
             {searching
-                && (
-                  <View style={[styles.modal, { width, height: height - 190 }, styles.center]}>
-                    <ActivityIndicator size="large" color="#FF9800" />
-                  </View>
-                )
-                }
+            && (
+              <View style={[styles.modal, { width, height: height - 190 }, styles.center]}>
+                <ActivityIndicator size="large" color="#FF9800" />
+              </View>
+            )
+            }
 
             {/* 検索結果をリスト表示 */}
             <ScrollView
               showsVerticalScrollIndicator={false}
             >
               {!searching && matchLists.length > 0 && matchLists.map((result, index) => (
-                // eslint-disable-next-line react/no-array-index-key
-                <View key={`partial-result-${index}-View`}>
+                <View key={result.name}>
                   {this.renderCandidateListCard(result, index)}
                 </View>
               ))}
@@ -76,7 +79,7 @@ class ListModal extends Component {
 
           </View>
 
-          <TouchableOpacity style={[styles.dismiss]} onPress={() => this.setState({ showModal: false, searching: false })}>
+          <TouchableOpacity style={[styles.dismiss]} onPress={() => this.onPressDismiss()}>
             <Ionicon name="ios-close-circle-outline" size={50} />
           </TouchableOpacity>
         </View>
@@ -91,7 +94,7 @@ class ListModal extends Component {
       <TouchableOpacity onPress={() => this.onPressCard(item)} key={`match-list-${index}-View`}>
         <View style={[Platform.OS === 'ios' ? styles.candidateCardforiOS : styles.candidateCardforAndroid, { width: width - 64 }]}>
 
-          <CategoryIcon categoryName={item.categoryName} style={{ marginRight: 16 }} />
+          <CategoryIcon categoryName={item.categoryName} style={styles.icon} />
 
           <View style={styles.flex}>
             <Text style={styles.categoryCardTxt} numberOfLines={1} ellipsizeMode="tail">{item.name}</Text>
@@ -111,6 +114,22 @@ class ListModal extends Component {
         </View>
       </TouchableOpacity>
     );
+  }
+
+  onPressDismiss() {
+    this.props.setModal(false);
+  }
+
+  onPressCard(item) {
+    const {
+      setModal,
+      selectSake,
+      navigation,
+    } = this.props;
+
+    setModal(false);
+    selectSake(item);
+    navigation.push('Add');
   }
 }
 
@@ -136,6 +155,9 @@ const styles = StyleSheet.create({
     borderColor: '#BDBDBD',
     borderWidth: 1,
     marginTop: 32,
+  },
+  icon: {
+    marginRight: 16,
   },
   center: {
     justifyContent: 'center',
@@ -184,7 +206,8 @@ const mapStatetoProps = (state) => {
 
 const mapDispatchToProps = dispatch => (
   bindActionCreators({
-    // setModal,
+    setModal,
+    selectSake,
   }, dispatch)
 );
 
