@@ -2,10 +2,12 @@ import React from 'react';
 import {
   View,
 } from 'react-native';
+import { createStackNavigator } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 
 import HomeScreen from '../screen/home';
 import SearchScreen from '../screen/search';
+import AddScreen from '../screen/add';
 
 export default function AppBottomNav() {
   return (
@@ -14,6 +16,19 @@ export default function AppBottomNav() {
     </View>
   );
 }
+
+const SearchStack = createStackNavigator({
+  Search: {
+    screen: SearchScreen,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  Add: {
+    screen: AddScreen,
+  },
+});
+
 
 // TODO: Warningが出るのでReduxを見てreact-navigationのメソッドに直す
 const BottomNav = createMaterialBottomTabNavigator({
@@ -25,7 +40,7 @@ const BottomNav = createMaterialBottomTabNavigator({
     },
   },
   Search: {
-    screen: SearchScreen,
+    screen: SearchStack,
     navigationOptions: {
       tabBarLabel: 'Search',
       tabBarIcon: () => (<View style={{ width: 24, height: 24, backgroundColor: '#FFF' }} />),

@@ -12,7 +12,6 @@ import { getUser } from '../redux/modules/user';
 
 class HomeScreen extends Component {
   componentDidMount() {
-    console.log(this.props);
     this.props.getUser();
   }
 

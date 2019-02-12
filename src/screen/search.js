@@ -16,6 +16,8 @@ import images from '../components/images';
 import CONFIG from '../config';
 import Utils from '../lib/utils';
 
+import { setModal } from '../redux/modules/search';
+
 class SearchScreen extends Component {
   constructor(props) {
     super(props);
@@ -98,9 +100,8 @@ class SearchScreen extends Component {
   };
 
   async startSerching() {
-    // this.props.setModal(true);
+    this.props.setModal(true);
     this.setState({
-      showModal: true,
       searching: true,
     });
 
@@ -177,15 +178,27 @@ class SearchScreen extends Component {
   })
     .then(response => response.json())
 
-  _destroyRecognizer = async () => {
+  onPressClear() {
+    Voice.destroy();
+    this.setState({
+      // end: false,
+      error: '',
+      results: [],
+      partialResults: [],
+      convertedResults: [],
+      matchLists: [],
+    });
+    Voice.start('ja-JP');
+  }
+
+  async _destroyRecognizer() {
     try {
       await Voice.destroy();
     } catch (e) {
       console.error(e);
     }
     this.setState({
-      recognized: false,
-      end: false,
+      // end: false,
       error: '',
       results: [],
       partialResults: [],
@@ -194,29 +207,24 @@ class SearchScreen extends Component {
     });
 
     Voice.start('ja-JP');
-  };
-
-  onPressCard(item) {
-    const { navigation } = this.props;
-    this.setState({
-      showModal: false,
-    });
-    navigation.push('Add', { item });
   }
 
   render() {
+    const { search } = this.props;
     const NoSpeetchInputError = (this.state.error !== '') && (this.state.error === '{"message":"6/No speech input"}');
     const NoMatchError = (this.state.error !== '') && (this.state.error === '{"message":"7/No match"}');
 
-    if (this.state.showModal) {
+    if (search && search.showModal) {
       return (
         <ListModal
           results={this.state.results}
           searching={this.state.searching}
           matchLists={this.state.matchLists}
+          {...this.props}
         />
       );
     }
+
     return (
       <View style={styles.container}>
         <Text style={styles.guideTxt}>お酒の名前を教えてください。</Text>
@@ -239,13 +247,14 @@ class SearchScreen extends Component {
         </View>
 
         <View style={{ height: 104, justifyContent: 'center', alignItems: 'center' }}>
+
           {NoSpeetchInputError
           && (
           <TouchableOpacity onPress={this._destroyRecognizer} style={styles.seondaryBtn}>
             <Text style={styles.secondaryBtnTxt}>再トライ</Text>
           </TouchableOpacity>
           )
-        }
+          }
 
           {NoMatchError
           && (
@@ -253,32 +262,31 @@ class SearchScreen extends Component {
             <Text style={styles.secondaryBtnTxt}>再トライ</Text>
           </TouchableOpacity>
           )
-        }
+          }
 
-
-          {/* {!NoSpeetchInputError && !NoMatchError && this.state.end
-          && ( */}
+          {!NoSpeetchInputError && !NoMatchError && this.state.results.length > 0
+          && (
           <View>
             <View style={{ width: 280, height: 52 }}>
-              {/* {this.state.end
-              && ( */}
+              {this.state.results.length > 0
+              && (
               <TouchableOpacity onPress={() => this.startSerching()} style={styles.primaryBtn}>
                 <Text style={styles.primaryBtnTxt}>検索する</Text>
               </TouchableOpacity>
-              {/* )
-            } */}
+              )
+              }
             </View>
 
             <View style={{ width: 280, height: 52 }}>
-              <TouchableOpacity onPress={this._destroyRecognizer} style={styles.seondaryBtn}>
+              <TouchableOpacity onPress={() => this.onPressClear()} style={styles.seondaryBtn}>
                 <Text style={styles.secondaryBtnTxt}>クリア</Text>
               </TouchableOpacity>
             </View>
           </View>
-          {/* )
-        } */}
-        </View>
+          )
+          }
 
+        </View>
       </View>
     );
   }
@@ -363,13 +371,13 @@ const styles = StyleSheet.create({
 });
 
 const mapStatetoProps = (state) => {
-  const { records } = state;
-  return { records };
+  const { search } = state;
+  return { search };
 };
 
 const mapDispatchToProps = dispatch => (
   bindActionCreators({
-    // setModal,
+    setModal,
   }, dispatch)
 );
 
