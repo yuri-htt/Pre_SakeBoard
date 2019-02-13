@@ -87,23 +87,23 @@ function createFail(err) {
 export const createSakeRecord = item => (dispatch, getState) => {
   dispatch(create());
 
-  const { user, sake } = getState();
+  const { user, post } = getState();
   const userCollection = firebase.firestore().collection('user');
   const postCollection = firebase.firestore().collection('post');
 
-  const post = {
-    categoryId: sake.categoryId,
-    categoryName: sake.categoryName,
-    sakeName: sake.sakeName,
-    areaName: sake.areaName,
-    companyName: sake.companyName,
+  const data = {
+    categoryId: post.categoryId,
+    categoryName: post.categoryName,
+    sakeName: post.sakeName,
+    areaName: post.areaName,
+    companyName: post.companyName,
     starCount: item.starCount,
     text: item.text,
     timestamp: Date.now(),
     user: userCollection.doc(user.uid),
   };
 
-  postCollection.add(post)
+  postCollection.add(data)
     .then(() => {
       dispatch(createSuccess());
     })
