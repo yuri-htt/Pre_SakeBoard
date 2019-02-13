@@ -13,6 +13,8 @@ import { bindActionCreators } from 'redux';
 
 import CategoryIcon from '../components/categoryIcon';
 
+import { createSakeRecord } from '../redux/modules/post';
+
 class Add extends Component {
   constructor(props) {
     super(props);
@@ -32,7 +34,7 @@ class Add extends Component {
     const {
       sake,
     } = this.props;
-    console.log(sake);
+
     return (
 
       <View style={styles.container}>
@@ -106,38 +108,26 @@ class Add extends Component {
     this.setState({ text });
   }
 
-  onPressSave = async () => {
+  onPressSave = () => {
     const {
-      categoryId,
-      categoryName,
-      sakeName,
-      areaName,
-      companyName,
       starCount,
       text,
     } = this.state;
+
     const {
-      user,
       navigation,
+      createSakeRecord,
     } = this.props;
 
     Keyboard.dismiss();
 
-    const result = await firebase.createPost(categoryId, categoryName, sakeName, areaName, companyName, starCount, text);
+    const post = {
+      starCount,
+      text,
+    };
 
-    if (result.error) {
-      console.log(result.error);
-    } else {
-      // navigation.dispatch({ type: 'ADD_POST', payload: result });
-      navigation.navigate('HomeTab');
-
-      const response = await firebase.getPosts(user.uid);
-      if (!response.error) {
-        navigation.dispatch({ type: 'SET_POSTS', payload: response.data });
-      } else {
-        console.log(response.error);
-      }
-    }
+    createSakeRecord(post);
+    navigation.navigate('Home');
   }
 
   onPressCancel() {
@@ -153,6 +143,7 @@ const mapStatetoProps = (state) => {
 
 const mapDispatchToProps = dispatch => (
   bindActionCreators({
+    createSakeRecord,
   }, dispatch)
 );
 

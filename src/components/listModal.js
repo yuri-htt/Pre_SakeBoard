@@ -18,7 +18,7 @@ import Ionicon from 'react-native-vector-icons/Ionicons';
 import CategoryIcon from './categoryIcon';
 
 import { setModal } from '../redux/modules/search';
-import { selectSake } from '../redux/modules/sake';
+import { selectSake } from '../redux/modules/post';
 
 const { width, height } = Dimensions.get('window');
 
