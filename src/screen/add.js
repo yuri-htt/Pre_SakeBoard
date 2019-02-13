@@ -32,7 +32,7 @@ class Add extends Component {
     } = this.state;
 
     const {
-      sake,
+      post,
     } = this.props;
 
     return (
@@ -41,19 +41,19 @@ class Add extends Component {
         <View style={[styles.contents]}>
           <View style={styles.sake}>
 
-            <CategoryIcon categoryName={sake.categoryName} size={50} style={{ marginRight: 16 }} />
+            <CategoryIcon categoryName={post.categoryName} size={50} style={{ marginRight: 16 }} />
 
             <View style={styles.flex}>
-              <Text style={styles.name} numberOfLines={2} ellipsizeMode="tail">{sake.sakeName}</Text>
+              <Text style={styles.name} numberOfLines={2} ellipsizeMode="tail">{post.sakeName}</Text>
               <View style={styles.detail}>
-                {!!sake.areaName && !sake.companyName
-                  && <Text style={styles.detailTxt} numberOfLines={1}>{sake.areaName}</Text>
+                {!!post.areaName && !post.companyName
+                  && <Text style={styles.detailTxt} numberOfLines={1}>{post.areaName}</Text>
                 }
-                {!!sake.companyName && !sake.areaName
-                  && <Text style={styles.detailTxt} numberOfLines={1}>{sake.companyName}</Text>
+                {!!post.companyName && !post.areaName
+                  && <Text style={styles.detailTxt} numberOfLines={1}>{post.companyName}</Text>
                 }
-                {!!sake.areaName && !!sake.companyName
-                  && <Text style={styles.detailTxt} numberOfLines={1}>{`${sake.areaName}  ${sake.companyName}`}</Text>
+                {!!post.areaName && !!post.companyName
+                  && <Text style={styles.detailTxt} numberOfLines={1}>{`${post.areaName}  ${post.companyName}`}</Text>
                 }
               </View>
             </View>
@@ -137,8 +137,8 @@ class Add extends Component {
 }
 
 const mapStatetoProps = (state) => {
-  const { sake } = state;
-  return { sake };
+  const { post } = state;
+  return { post };
 };
 
 const mapDispatchToProps = dispatch => (
