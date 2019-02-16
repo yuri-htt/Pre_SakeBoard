@@ -15,6 +15,7 @@ import { bindActionCreators } from 'redux';
 import styleConstants from '../styleConstants';
 import images from '../components/images';
 import CategoryCard from '../components/categoryCard';
+import ListCard from '../components/listCard';
 
 import { getUser } from '../redux/modules/user';
 import { getPosts } from '../redux/modules/posts';
@@ -25,9 +26,9 @@ class HomeScreen extends Component {
   }
 
   render() {
-    const posts = {
-      data: [],
-    };
+    const {
+      posts,
+    } = this.props;
 
     return (
       <ScrollView style={styles.container}>
@@ -52,7 +53,7 @@ class HomeScreen extends Component {
           <View style={styles.timeLine}>
             <Text style={styles.headLine}>タイムライン</Text>
 
-            {/* {posts.data.length === 0
+            {posts.data.length === 0
               && (
               <View style={styles.empty}>
                 <Text style={styles.emptyTxt}>まだ飲んだお酒はありません</Text>
@@ -70,7 +71,7 @@ class HomeScreen extends Component {
                 />
               </View>
               )
-            } */}
+            }
 
           </View>
 
@@ -232,8 +233,8 @@ const styles = StyleSheet.create({
 // export default HomeScreen
 
 const mapStatetoProps = (state) => {
-  const { records } = state;
-  return { records };
+  const { posts } = state;
+  return { posts };
 };
 
 const mapDispatchToProps = dispatch => (
