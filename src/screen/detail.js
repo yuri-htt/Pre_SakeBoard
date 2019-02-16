@@ -56,11 +56,16 @@ class DetailScreen extends Component {
         <ActionButton
           buttonColor="#212121"
           renderIcon={() => <Icon name="edit" size={24} color="rgba(255,255,255,1)" />}
-          onPress={() => this.onOPressEdit()}
+          onPress={() => this.onPressEdit()}
         />
 
       </View>
     );
+  }
+
+  onPressEdit() {
+    const { navigation } = this.props;
+    navigation.push('Edit');
   }
 }
 

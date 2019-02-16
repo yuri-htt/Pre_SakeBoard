@@ -8,8 +8,6 @@ import { createStackNavigator } from 'react-navigation';
 
 import store from './src/redux/store';
 import AppBottomNav from './src/components/appBottomNav';
-import AddScreen from './src/screen/add';
-import ListScreen from './src/screen/list';
 
 export default function App() {
   return (

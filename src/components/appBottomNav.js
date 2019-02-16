@@ -3,7 +3,6 @@ import {
   View,
 } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
-import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 import HomeScreen from '../screen/home';
@@ -11,6 +10,7 @@ import SearchScreen from '../screen/search';
 import AddScreen from '../screen/add';
 import ListScreen from '../screen/list';
 import DetailScreen from '../screen/detail';
+import EditScreen from '../screen/edit';
 
 export default function AppBottomNav() {
   return (
@@ -32,6 +32,9 @@ const HomeStack = createStackNavigator({
   },
   Detail: {
     screen: DetailScreen,
+  },
+  Edit: {
+    screen: EditScreen,
   },
 });
 
@@ -57,7 +60,6 @@ const SearchStack = createStackNavigator({
 const BottomNav = createBottomTabNavigator({
   Home: {
     screen: HomeStack,
-    // screen: HomeScreen,
     navigationOptions: {
       tabBarLabel: 'Home',
       tabBarIcon: () => (<View style={{ width: 24, height: 24, backgroundColor: '#FFF' }} />),
@@ -65,7 +67,6 @@ const BottomNav = createBottomTabNavigator({
   },
   Search: {
     screen: SearchStack,
-    // screen: SearchScreen,
     navigationOptions: {
       tabBarLabel: 'Search',
       tabBarIcon: () => (<View style={{ width: 24, height: 24, backgroundColor: '#FFF' }} />),
