@@ -20,11 +20,13 @@ export default function reducers(state = initialState, action = {}) {
       return {
         categoryId: payload.categoryId,
         categoryName: payload.categoryName,
-        sakeName: payload.name,
+        sakeName: payload.sakeName,
         areaName: payload.areaName,
         companyName: payload.companyName,
         starCount: payload.starCount,
         text: payload.text,
+        timestamp: payload.timestamp,
+        key: payload.key,
       };
     case 'CLEAR': {
       return {
@@ -59,6 +61,7 @@ export default function reducers(state = initialState, action = {}) {
 }
 
 export function selectSake(sake) {
+  console.log(sake);
   return {
     type: 'SELECT',
     payload: sake,

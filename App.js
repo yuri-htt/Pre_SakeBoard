@@ -33,18 +33,4 @@ const AppStackNav = createStackNavigator({
       header: null,
     },
   },
-  Add: {
-    screen: AddScreen,
-    navigationOptions: {
-      headerTintColor: '#97c8eb',
-      headerTransparent: true,
-    },
-  },
-  List: {
-    screen: ListScreen,
-    navigationOptions: {
-      headerTintColor: '#97c8eb',
-      headerTransparent: true,
-    },
-  },
 });

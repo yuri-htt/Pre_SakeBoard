@@ -7,10 +7,13 @@ import {
 } from 'react-native';
 import StarRating from 'react-native-star-rating';
 import moment from 'moment';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import CategoryIcon from './categoryIcon';
+import { selectSake } from '../redux/modules/post';
 
-export default class CategoryCard extends Component {
+class ListCard extends Component {
   render() {
     const {
       item,
@@ -55,8 +58,12 @@ export default class CategoryCard extends Component {
   }
 
   onPressCard(post) {
-    const { navigation } = this.props;
+    const {
+      navigation,
+      selectSake,
+    } = this.props;
 
+    selectSake(post);
     navigation.push('Detail');
   }
 }
@@ -110,3 +117,16 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
 });
+
+const mapStatetoProps = (state) => {
+  const { posts } = state;
+  return { posts };
+};
+
+const mapDispatchToProps = dispatch => (
+  bindActionCreators({
+    selectSake,
+  }, dispatch)
+);
+
+export default connect(mapStatetoProps, mapDispatchToProps)(ListCard);
