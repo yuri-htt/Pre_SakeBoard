@@ -9,6 +9,7 @@ import { createStackNavigator } from 'react-navigation';
 import store from './src/redux/store';
 import AppBottomNav from './src/components/appBottomNav';
 import AddScreen from './src/screen/add';
+import ListScreen from './src/screen/list';
 
 export default function App() {
   return (
@@ -34,6 +35,13 @@ const AppStackNav = createStackNavigator({
   },
   Add: {
     screen: AddScreen,
+    navigationOptions: {
+      headerTintColor: '#97c8eb',
+      headerTransparent: true,
+    },
+  },
+  List: {
+    screen: ListScreen,
     navigationOptions: {
       headerTintColor: '#97c8eb',
       headerTransparent: true,

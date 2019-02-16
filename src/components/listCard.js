@@ -22,7 +22,7 @@ export default class CategoryCard extends Component {
     };
 
     const postedDate = moment(item.timestamp).format('MM月DD日');
-    console.log(item);
+
     return (
       <TouchableOpacity onPress={() => this.onPressCard(post)}>
         <View style={styles.container} onLayout={this.onLayout}>
@@ -56,8 +56,8 @@ export default class CategoryCard extends Component {
 
   onPressCard(post) {
     const { navigation } = this.props;
-    navigation.dispatch({ type: 'SET_POST', payload: post });
-    navigation.push('Detail', { post });
+
+    navigation.push('Detail');
   }
 }
 

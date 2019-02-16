@@ -44,7 +44,7 @@ export default class CategoryCard extends Component {
     } = this.props;
 
     return (
-      <TouchableOpacity style={styles.categoryCard} onPress={() => this.onPressCard()}>
+      <TouchableOpacity style={styles.categoryCard} onPress={() => this.onPressCard(categoryName)}>
         <Image
           style={styles.icon}
           source={this.getCategoryIcon(categoryName)}
@@ -54,10 +54,9 @@ export default class CategoryCard extends Component {
     );
   }
 
-  onPressCard() {
+  onPressCard(categoryName) {
     const {
       navigation,
-      categoryName,
     } = this.props;
 
     navigation.push('List', { categoryName });
