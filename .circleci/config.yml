@@ -1,0 +1,36 @@
+# Javascript Node CircleCI 2.0 configuration file
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+# Sample 2.0 config.yml Files
+# https://circleci.com/docs/2.0/sample-config/
+
+version: 2
+jobs:
+  build:
+    working_directory: ~/pre-sake-board
+
+    docker:
+      - image: circleci/node:10-browsers-legacy
+
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+      - run:
+          name: Install dependencies
+          command: yarn install
+      - run:
+          name: Test
+          command: npm test
+      - run:
+          name: Lint
+          command: ./node_modules/.bin/eslint --config .eslintrc.json src __tests__
+      - run:
+          name: Flow
+          command: npm run flow
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
