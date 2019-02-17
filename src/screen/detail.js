@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import CategoryIcon from '../components/categoryIcon';
-import { createSakeRecord } from '../redux/modules/post';
+import { createPost } from '../redux/modules/post';
 
 class DetailScreen extends Component {
   render() {
@@ -24,7 +24,7 @@ class DetailScreen extends Component {
         <View style={styles.header}>
           <CategoryIcon categoryName={post.categoryName} size={60} style={styles.icon} />
           <View style={styles.flex}>
-            <Text style={styles.name} numberOfLines={2}>{post.sakeName}</Text>
+            <Text style={styles.name} numberOfLines={2}>{post.name}</Text>
             <View style={styles.detail}>
               {!!post.areaName && !post.companyName
                 && <Text style={styles.detailTxt} numberOfLines={1}>{post.areaName}</Text>
@@ -76,7 +76,7 @@ const mapStatetoProps = (state) => {
 
 const mapDispatchToProps = dispatch => (
   bindActionCreators({
-    createSakeRecord,
+    createPost,
   }, dispatch)
 );
 

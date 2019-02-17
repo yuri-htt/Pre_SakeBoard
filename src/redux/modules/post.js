@@ -6,7 +6,7 @@ const initialState = {
   created: false,
   categoryId: 0,
   categoryName: '',
-  sakeName: '',
+  name: '',
   areaName: '',
   companyName: '',
   starCount: 0,
@@ -21,7 +21,7 @@ export default function reducers(state = initialState, action = {}) {
       return {
         categoryId: payload.categoryId,
         categoryName: payload.categoryName,
-        sakeName: payload.sakeName,
+        name: payload.name,
         areaName: payload.areaName,
         companyName: payload.companyName,
         starCount: payload.starCount,
@@ -70,7 +70,7 @@ export default function reducers(state = initialState, action = {}) {
         updated: true,
         categoryId: payload.categoryId,
         categoryName: payload.categoryName,
-        sakeName: payload.sakeName,
+        name: payload.name,
         areaName: payload.areaName,
         companyName: payload.companyName,
         starCount: payload.starCount,
@@ -138,17 +138,17 @@ function updateFail(err) {
   };
 }
 
-export const createSakeRecord = item => (dispatch, getState) => {
+export const createPost = item => (dispatch, getState) => {
   dispatch(create());
 
   const { user, post } = getState();
   const userCollection = firebase.firestore().collection('user');
   const postCollection = firebase.firestore().collection('post');
-
+  console.log(post);
   const data = {
     categoryId: post.categoryId,
     categoryName: post.categoryName,
-    sakeName: post.sakeName,
+    name: post.name,
     areaName: post.areaName,
     companyName: post.companyName,
     starCount: item.starCount,
@@ -160,6 +160,7 @@ export const createSakeRecord = item => (dispatch, getState) => {
   postCollection.add(data)
     .then(() => {
       dispatch(createSuccess());
+      dispatch(getPosts());
     })
     .catch(e => createFail(e));
 };
@@ -174,7 +175,7 @@ export const editSakeRecord = item => (dispatch, getState) => {
   const data = {
     categoryId: post.categoryId,
     categoryName: post.categoryName,
-    sakeName: post.sakeName,
+    name: post.name,
     areaName: post.areaName,
     companyName: post.companyName,
     starCount: item.starCount,

@@ -1,6 +1,6 @@
-import firebase from 'react-native-firebase';
-
 const initialState = {
+  searching: false,
+  searched: false,
   showModal: false,
 };
 
@@ -10,38 +10,27 @@ export default (state = initialState, action) => {
   switch (type) {
     case 'SEARCH':
       return {
-        start: true,
+        ...state,
+        searching: true,
+        searched: false,
       };
     case 'SEARCH_SUCCESS':
       return {
-        start: false,
+        ...state,
+        searching: false,
+        searched: true,
       };
     case 'SET_MODAL':
       return {
+        ...state,
+        searching: false,
+        searched: true,
         showModal: payload,
       };
     default:
       return state;
   }
 };
-
-
-export const getIndex2 = () => (dispatch) => {
-  dispatch(startSearching());
-  dispatch(endSearching());
-};
-
-function startSearching() {
-  return {
-    type: 'SEARCH',
-  };
-}
-
-function endSearching() {
-  return {
-    type: 'SEARCH_SUCCESS',
-  };
-}
 
 export function setModal(visible) {
   return {

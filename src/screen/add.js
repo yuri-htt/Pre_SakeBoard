@@ -12,10 +12,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import CategoryIcon from '../components/categoryIcon';
+import { createPost } from '../redux/modules/post';
 
-import { createSakeRecord } from '../redux/modules/post';
-
-class Add extends Component {
+class AddScreen extends Component {
   constructor(props) {
     super(props);
 
@@ -44,7 +43,7 @@ class Add extends Component {
             <CategoryIcon categoryName={post.categoryName} size={50} style={{ marginRight: 16 }} />
 
             <View style={styles.flex}>
-              <Text style={styles.name} numberOfLines={2} ellipsizeMode="tail">{post.sakeName}</Text>
+              <Text style={styles.name} numberOfLines={2} ellipsizeMode="tail">{post.name}</Text>
               <View style={styles.detail}>
                 {!!post.areaName && !post.companyName
                   && <Text style={styles.detailTxt} numberOfLines={1}>{post.areaName}</Text>
@@ -116,7 +115,7 @@ class Add extends Component {
 
     const {
       navigation,
-      createSakeRecord,
+      createPost,
     } = this.props;
 
     Keyboard.dismiss();
@@ -126,7 +125,7 @@ class Add extends Component {
       text,
     };
 
-    createSakeRecord(post);
+    createPost(post);
     navigation.navigate('Home');
   }
 
@@ -143,11 +142,11 @@ const mapStatetoProps = (state) => {
 
 const mapDispatchToProps = dispatch => (
   bindActionCreators({
-    createSakeRecord,
+    createPost,
   }, dispatch)
 );
 
-export default connect(mapStatetoProps, mapDispatchToProps)(Add);
+export default connect(mapStatetoProps, mapDispatchToProps)(AddScreen);
 
 const styles = StyleSheet.create({
   flex: {

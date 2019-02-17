@@ -2,18 +2,14 @@ import React, { Component } from 'react';
 import {
   Text,
   View,
-  Modal,
-  Image,
   FlatList,
   StyleSheet,
   ScrollView,
-  TouchableOpacity,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import styleConstants from '../styleConstants';
-import images from '../components/images';
 import CategoryCard from '../components/categoryCard';
 import ListCard from '../components/listCard';
 
@@ -80,6 +76,20 @@ class HomeScreen extends Component {
     );
   }
 }
+
+const mapStatetoProps = (state) => {
+  const { posts } = state;
+  return { posts };
+};
+
+const mapDispatchToProps = dispatch => (
+  bindActionCreators({
+    getUser,
+    getPosts,
+  }, dispatch)
+);
+
+export default connect(mapStatetoProps, mapDispatchToProps)(HomeScreen);
 
 const styles = StyleSheet.create({
   center: {
@@ -229,19 +239,3 @@ const styles = StyleSheet.create({
     height: 16 * 1.3,
   },
 });
-
-// export default HomeScreen
-
-const mapStatetoProps = (state) => {
-  const { posts } = state;
-  return { posts };
-};
-
-const mapDispatchToProps = dispatch => (
-  bindActionCreators({
-    getUser,
-    getPosts,
-  }, dispatch)
-);
-
-export default connect(mapStatetoProps, mapDispatchToProps)(HomeScreen);

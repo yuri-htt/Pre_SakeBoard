@@ -10,8 +10,7 @@ import { bindActionCreators } from 'redux';
 
 import ListCard from '../components/listCard';
 import styleConstants from '../styleConstants';
-
-import { createSakeRecord } from '../redux/modules/post';
+import { createPost } from '../redux/modules/post';
 
 class ListScreen extends Component {
   constructor(props) {
@@ -63,7 +62,7 @@ const mapStatetoProps = (state) => {
 
 const mapDispatchToProps = dispatch => (
   bindActionCreators({
-    createSakeRecord,
+    createPost,
   }, dispatch)
 );
 

@@ -38,7 +38,7 @@ class EditScreen extends Component {
           <View style={styles.sake}>
             <CategoryIcon categoryName={post.categoryName} size={50} style={{ marginRight: 16 }} />
             <View style={styles.flex}>
-              <Text style={styles.name} numberOfLines={1} ellipsizeMode="tail">{post.sakeName}</Text>
+              <Text style={styles.name} numberOfLines={1} ellipsizeMode="tail">{post.name}</Text>
               <View style={styles.detail}>
                 {!!post.areaName && !post.companyName
                   && <Text style={styles.detailTxt} numberOfLines={1} ellipsizeMode="tail">{post.areaName}</Text>

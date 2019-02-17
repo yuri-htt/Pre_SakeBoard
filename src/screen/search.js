@@ -198,7 +198,6 @@ class SearchScreen extends Component {
       console.error(e);
     }
     this.setState({
-      // end: false,
       error: '',
       results: [],
       partialResults: [],
@@ -292,6 +291,19 @@ class SearchScreen extends Component {
   }
 }
 
+const mapStatetoProps = (state) => {
+  const { search } = state;
+  return { search };
+};
+
+const mapDispatchToProps = dispatch => (
+  bindActionCreators({
+    setModal,
+  }, dispatch)
+);
+
+export default connect(mapStatetoProps, mapDispatchToProps)(SearchScreen);
+
 const styles = StyleSheet.create({
   flex: {
     flex: 1,
@@ -369,16 +381,3 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
 });
-
-const mapStatetoProps = (state) => {
-  const { search } = state;
-  return { search };
-};
-
-const mapDispatchToProps = dispatch => (
-  bindActionCreators({
-    setModal,
-  }, dispatch)
-);
-
-export default connect(mapStatetoProps, mapDispatchToProps)(SearchScreen);

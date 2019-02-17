@@ -55,8 +55,6 @@ const SearchStack = createStackNavigator({
 });
 
 
-// TODO: Warningが出るのでReduxを見てreact-navigationのメソッドに直す
-// const BottomNav = createMaterialBottomTabNavigator({
 const BottomNav = createBottomTabNavigator({
   Home: {
     screen: HomeStack,

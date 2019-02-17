@@ -35,8 +35,8 @@ class ListCard extends Component {
           </View>
 
           <View style={styles.rightColumn}>
-            {post.sakeName != '' && (
-              <Text style={styles.titleText} numberOfLines={1} ellipsizeMode="tail">{post.sakeName}</Text>
+            {post.name != '' && (
+              <Text style={styles.titleText} numberOfLines={1} ellipsizeMode="tail">{post.name}</Text>
             )}
             <Text style={styles.text}>{postedDate}</Text>
             <View style={styles.stars}>

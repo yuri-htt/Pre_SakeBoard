@@ -1,9 +1,8 @@
 import firebase from 'react-native-firebase';
 
 const initialState = {
-  launching: false,
-  launched: false,
-  isFirstTime: false,
+  loading: false,
+  loaded: false,
   data: [],
 };
 
@@ -14,6 +13,8 @@ export default function reducers(state = initialState, action = {}) {
     case 'LOAD':
       return {
         ...state,
+        loading: true,
+        loaded: false,
       };
     case 'LOAD_SUCCESS': {
       const data = payload.map(post => ({
@@ -22,12 +23,17 @@ export default function reducers(state = initialState, action = {}) {
       }));
       return {
         ...state,
+        loading: false,
+        loaded: true,
         data,
       };
     }
     case 'LOAD_FAIL':
       return {
         ...state,
+        loading: false,
+        loaded: true,
+        error: payload.error,
       };
     default:
       return state;
@@ -38,7 +44,6 @@ export const getPosts = () => (dispatch, getState) => {
   dispatch(requestPosts());
 
   const { user } = getState();
-  firebase.firestore().settings({ timestampsInSnapshots: true });
   const userCollection = firebase.firestore().collection('user');
   const postCollection = firebase.firestore().collection('post');
 
