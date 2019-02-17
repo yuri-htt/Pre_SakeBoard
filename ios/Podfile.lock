@@ -112,15 +112,15 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - Protobuf (3.6.1)
-  - React (0.58.1):
-    - React/Core (= 0.58.1)
-  - React/Core (0.58.1):
-    - yoga (= 0.58.1.React)
-  - React/RCTLinkingIOS (0.58.1):
+  - React (0.58.4):
+    - React/Core (= 0.58.4)
+  - React/Core (0.58.4):
+    - yoga (= 0.58.4.React)
+  - React/RCTLinkingIOS (0.58.4):
     - React/Core
   - RNVectorIcons (6.2.0):
     - React
-  - yoga (0.58.1.React)
+  - yoga (0.58.4.React)
 
 DEPENDENCIES:
   - Firebase/Auth

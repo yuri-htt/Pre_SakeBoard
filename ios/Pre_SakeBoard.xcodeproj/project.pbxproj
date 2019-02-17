@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -59,6 +60,7 @@
 		C91FA442BF9A4560BBE80314 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9E6D57A82A4B4B3388C7F2A2 /* Zocial.ttf */; };
 		D4DF0150B97C4C7B861B7CF5 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 393A114FC9CF4DC9AF8682B2 /* Foundation.ttf */; };
 		DA6E3C7922033CEC00450AEF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA6E3C4B22033CEC00450AEF /* GoogleService-Info.plist */; };
+		DA74A0C122194FAA00E336CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA74A09922194FAA00E336CE /* GoogleService-Info.plist */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
 /* End PBXBuildFile section */
@@ -407,6 +409,7 @@
 		C5C5718968FE981C6CDF0133 /* libPods-Pre_SakeBoard-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Pre_SakeBoard-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6B8288FD8D7489595071CD1 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		DA6E3C4B22033CEC00450AEF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DA74A09922194FAA00E336CE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DE45772FBEC53DFEA46F2FD4 /* Pods-Pre_SakeBoard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pre_SakeBoard.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pre_SakeBoard/Pods-Pre_SakeBoard.release.xcconfig"; sourceTree = "<group>"; };
 		E2B3FFE87E7B4F87AD49FF3D /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -581,6 +584,7 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				DA6E3C4B22033CEC00450AEF /* GoogleService-Info.plist */,
+				DA74A09922194FAA00E336CE /* GoogleService-Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
@@ -1238,6 +1242,7 @@
 				42EFCC583FED42F599964B82 /* FontAwesome5_Brands.ttf in Resources */,
 				687A8400417748259160B328 /* FontAwesome5_Regular.ttf in Resources */,
 				63E850DC724942F3A3768DFC /* FontAwesome5_Solid.ttf in Resources */,
+				DA74A0C122194FAA00E336CE /* GoogleService-Info.plist in Resources */,
 				D4DF0150B97C4C7B861B7CF5 /* Foundation.ttf in Resources */,
 				2D172D2E04C44CFCBE669E40 /* Ionicons.ttf in Resources */,
 				59CCB3DBFE174645A64749A4 /* MaterialCommunityIcons.ttf in Resources */,
